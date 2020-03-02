@@ -1,0 +1,147 @@
+第一：1.用户表
+user_id name create_time login_time
+
+create table user_list 
+(
+user_id int unsigned,
+name varchar(20),
+create_time datetime,
+login_time datetime
+);
+
+2.组信息表
+group_id name time count
+
+create table group_list
+(
+group_id int unsigned,
+name varchar(20),
+time datetime,
+count int unsigned
+);
+
+3.权限表
+power_id name
+
+create table power_list
+(
+power_id int unsigned,
+name varchar(20)
+);
+4.项目表
+proc_id name time member_count
+
+create table proc_list
+(
+proc_id int unsigned,
+name varchar(50),
+time datetime,
+member_count int unsigned
+);
+
+5.用户与组关系表
+id(user_id + group_id) user_id group_id time
+
+create table u_g_relation_list
+(
+id int unsigned,
+user_id int unsigned,
+group_id int unsigned,
+time datetime
+);
+6.用户/组权限表
+id(pro_id + user_id) user_id/group_id power_id time pro_id 
+
+create table u_g_power_list
+(
+id int unsigned,
+user_id int unsigned,
+group_id int unsigned,
+power_id int unsigned,
+time datetime,
+proc_id int unsigned
+);
+7.操作表
+type_id value
+
+create table operate_type_list
+(
+type_id int unsigned,
+value int
+);
+
+8.原因表
+why_id value
+
+create table operate_why_list
+(
+why_id int unsigned,
+value int
+);
+
+9.文件表
+file_id file_name
+
+create table file_list
+(
+file_id int unsigned,
+file_name varchar(50)
+);
+
+10.路径表
+path_id path_name
+
+create table path_list
+(
+path_id int unsigned,
+path_name varchar(50)
+);
+
+11.记录表
+record_id user_id opt_time file_id path_id pro_id why_id type_id
+
+create table record_list
+(
+record_id int unsigned,
+user_id int unsigned,
+opt_time datetime,
+file_id int unsigned,
+path_id int unsigned,
+pro_id int unsigned,
+why_id int unsigned,
+type_id int unsigned
+);
+
+第二：server manager:(单例，观察者，享元,将请求做成状态机处理机制)
+CUser, CGroup, CProject, UI, 网络/进程间通信方式，kernel
+UI::OninitDlg(kernel::open(连接服务器和创建处理线程))
+kernel：OnAddUser：new pack;send(pack);   kernel:thread:recv(data);UI.NotifyAddUser();
+kernel:close:delete ...;net.close;
+server manager：add user, delete user, add group, delete group, add_pro, delete_pro, join_group, leave_group, set_power
+
+第三：
+client:login, logout, get_pro_list, get_sub_pro(file/folder), comminit_pro(file/folder), add_pro(file/folder),
+delete_pro(file/folder), find_history, compare_file, roll_back, update, lock_pro, unlock_pro。
+多线程
+
+
+server：
+
+数据存储：
+提交记录表：
+id    user_id  time  项目   文件相对路径   原因  操作类型（增加，删除，修改，下载，回滚）
+
+/xx/xxx/xxxxx/xxxxxxx/aa.txt
+
+项目/文件     用户   操作     日期      目录、文件 
+
+（可以使用软连接文件的方式，来既保证了不同搜索的效率需求，又节省了磁盘空间）
+12各月
+文件名称-操作类型-用户合成文件名称。
+
+项目文件目录再server存储，历史文件信息的存储，数据库如何维护。
+
+主键    用户  时间  操作（增删该） 文件（带路径） 所属项目   原因.
+
+
+

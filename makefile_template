@@ -1,0 +1,55 @@
+#定义编译选项
+CC = g++
+LINK = g++
+CFLAGS = -Wall
+
+#定义头文件目录，链接库目录，链接文件
+INCLUDE = ./include
+INCLUDE := $(shell find "$(INCLUDE)" -maxdepth 3 -type d)
+INCLUDE_PATH = $(foreach n, $(INCLUDE), -I$(n))	#INCLUDE_PATH=$(addprefix -I,${INCLUDE})
+#INCLUDE_PATH = -Iinclude -Iinclude/inc1/ -Iinclude/inc2/
+
+LIB_PATH = -Llib -L/usr/local/lib
+
+#定义项目代码根目录及所有文件夹目录
+SRC_DIR = src
+VPATH := $(shell find "$(SRC_DIR)" -maxdepth 3 -type d)
+#$(shell echo "$(VPATH)" > aa.txt)
+#VPATH =  $(SRC_DIR)
+#VPATH += $(SRC_DIR)/sub1
+#VPATH += $(SRC_DIR)/sub2
+
+#找出所有 .cpp 文件和相应的 .o 文件（带目录）
+SRC_FILES = $(foreach n, $(VPATH),$(wildcard $(n)/*.cpp))
+OBJ_FILES = $(SRC_FILES:.cpp=.o)
+
+#把所有的 .o 文件放到定义好的输出文件夹中统一管理
+OUTPUT_DIR := debug
+OUTPUT_OBJS = $(addprefix $(OUTPUT_DIR)/,$(subst $(SRC_DIR)/, ,$(OBJ_FILES)))
+
+#创建存放 .o 文件的目录结构
+#$(shell echo "$(VPATH)" >> aa.txt)
+#CREATE_DIR = $(addprefix $(OUTPUT_DIR)/,$(subst $(SRC_DIR), ,$(VPATH)))
+#$(shell echo "$(CREATE_DIR)" >> aa.txt)
+#$(shell mkdir -p "$(OUTPUT_DIR)")
+#$(shell mkdir -p "$(CREATE_DIR)")
+$(shell mkdir -p "$(OUTPUT_DIR)")
+$(shell mkdir -p "$(OUTPUT_DIR)/sub1")
+$(shell mkdir -p "$(OUTPUT_DIR)/sub2")
+
+#定义输出目标名
+TARGET = server
+
+#链接
+$(TARGET) : $(OUTPUT_OBJS)
+	$(LINK) $(OUTPUT_OBJS) -o $@ $(LIB_PATH) $(LIBS)
+
+#编译
+$(OUTPUT_DIR)/%.o : %.cpp
+	$(CC) -c $< -o $@ $(INCLUDE_PATH)
+
+#清除
+.PHONY:clean
+clean:
+	-rm -rf $(OUTPUT_DIR)/*
+	-rm -rf $(TARGET)

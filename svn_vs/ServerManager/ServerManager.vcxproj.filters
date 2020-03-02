@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="PackDef">
+      <UniqueIdentifier>{9034709f-8290-49b8-bc84-9f827760c61d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PackDef\SM2S">
+      <UniqueIdentifier>{8385b8a6-dc4b-4e3e-992e-f54407007673}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project">
+      <UniqueIdentifier>{d132e56f-a71a-4a85-8f17-28d941410bbc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Net">
+      <UniqueIdentifier>{10f6352f-fdfd-412a-bfec-171fd3d9719c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Kernel">
+      <UniqueIdentifier>{9e02dfd5-5e25-4c7f-b328-edfb4b7440a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PackDef\C2S">
+      <UniqueIdentifier>{dc59381a-7f48-4f3a-a882-94c413e31c04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataSet">
+      <UniqueIdentifier>{7d84b46b-1dcb-4bee-b8e0-5870e74f2780}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{53697b49-111d-4f67-a6d7-7d5df9cfc1b4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\PackDef\SM2S\SM2S.cpp">
+      <Filter>PackDef\SM2S</Filter>
+    </ClCompile>
+    <ClCompile Include="..\PackDef\C2S\C2S.cpp">
+      <Filter>PackDef\C2S</Filter>
+    </ClCompile>
+    <ClCompile Include="DataSet\DataSet.cpp">
+      <Filter>DataSet</Filter>
+    </ClCompile>
+    <ClCompile Include="Kernel\kernel.cpp">
+      <Filter>Kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="Net\Net.cpp">
+      <Filter>Net</Filter>
+    </ClCompile>
+    <ClCompile Include="Project\main.cpp">
+      <Filter>Project</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\PackDef\SM2S\SM2S.h">
+      <Filter>PackDef\SM2S</Filter>
+    </ClInclude>
+    <ClInclude Include="..\PackDef\C2S\C2S.h">
+      <Filter>PackDef\C2S</Filter>
+    </ClInclude>
+    <ClInclude Include="DataSet\DataSet.h">
+      <Filter>DataSet</Filter>
+    </ClInclude>
+    <ClInclude Include="DataSet\Group.h">
+      <Filter>DataSet</Filter>
+    </ClInclude>
+    <ClInclude Include="DataSet\Project.h">
+      <Filter>DataSet</Filter>
+    </ClInclude>
+    <ClInclude Include="DataSet\User.h">
+      <Filter>DataSet</Filter>
+    </ClInclude>
+    <ClInclude Include="Kernel\kernel.h">
+      <Filter>Kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="Net\Net.h">
+      <Filter>Net</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Common.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
